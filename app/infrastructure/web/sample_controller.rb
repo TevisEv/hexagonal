@@ -7,13 +7,13 @@ repository = InMemorySampleRepository.new
 sample_service = SampleService.new(repository)
 
 get '/samples' do
-  @samples = sample_service.list_samples
-  erb :'samples/list'
-end
-
-post '/samples' do
-  sample_service.create_sample(params)
-  redirect '/samples'
-end
+    @samples = sample_service.list_samples
+    erb :'sample/list'
+  end
+  
+  post '/samples' do
+    sample_service.create_sample(params)
+    redirect '/samples'
+  end
 
 # Más rutas CRUD...

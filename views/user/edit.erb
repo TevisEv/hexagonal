@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Usuario</title>
+</head>
+<body>
+  <h1>Editar Usuario</h1>
+  <form action="/users/<%= @user.id %>" method="post">
+    <label>Nombre:</label><br>
+    <input type="text" name="first_name" value="<%= @user.first_name %>" required><br>
+    <label>Apellido:</label><br>
+    <input type="text" name="last_name" value="<%= @user.last_name %>" required><br>
+    <label>Rol:</label><br>
+    <select name="role">
+      <option value="admin" <%= @user.role == 'admin' ? 'selected' : '' %>>Admin</option>
+      <option value="client" <%= @user.role == 'client' ? 'selected' : '' %>>Cliente</option>
+      <option value="laboratorist" <%= @user.role == 'laboratorist' ? 'selected' : '' %>>Laboratorista</option>
+    </select><br>
+    <label>Email:</label><br>
+    <input type="email" name="email" value="<%= @user.email %>" required><br>
+    <label>Contraseña:</label><br>
+    <input type="password" name="password" value="<%= @user.password %>" required><br>
+    <label>Teléfono:</label><br>
+    <input type="text" name="phone" value="<%= @user.phone %>" required><br>
+    <label>Edad:</label><br>
+    <input type="number" name="age" value="<%= @user.age %>" required><br><br>
+    <button type="submit">Actualizar</button>
+  </form>
+  <a href="/users">Volver</a>
+</body>
+</html>
