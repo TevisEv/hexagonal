@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usuarios</title>
+</head>
+<body>
+  <h1>Lista de Usuarios</h1>
+  <a href="/users/new">Crear Usuario</a>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Rol</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Edad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.role %></td>
+          <td><%= user.email %></td>
+          <td><%= user.phone %></td>
+          <td><%= user.age %></td>
+          <td>
+            <a href="/users/<%= user.id %>/edit">Editar</a>
+            <form action="/users/<%= user.id %>/delete" method="post" style="display:inline;">
+              <button type="submit">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <a href="/">Volver al inicio</a>
+</body>
+</html>
