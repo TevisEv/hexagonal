@@ -14,6 +14,7 @@ DB_CONNECTION = PG.connect(
 USER_REPOSITORY = PgUserRepository.new(DB_CONNECTION)
 USER_SERVICE = UserService.new(USER_REPOSITORY)
 
+enable :method_override # Habilita métodos HTTP como PUT y DELETE
 # Requiere otros controladores
 require_relative 'app/infrastructure/web/login_controller'
 require_relative 'app/infrastructure/web/user_controller'

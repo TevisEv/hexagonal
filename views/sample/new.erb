@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Muestra</title>
+</head>
+<body>
+  <h1>Crear Nueva Muestra</h1>
+  <form action="/samples" method="post">
+    <label for="name">Nombre de la Muestra:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="description">Descripción:</label>
+    <textarea id="description" name="description" required></textarea>
+
+    <label for="owner_id">Asignar al Cliente:</label>
+    <select id="owner_id" name="owner_id" required>
+      <% @users.each do |user| %>
+        <option value="<%= user.id %>"><%= user.first_name %> <%= user.last_name %> (<%= user.email %>)</option>
+      <% end %>
+    </select>
+
+    <label for="created_by">Creado por (Laboratorista):</label>
+    <select id="created_by" name="created_by" required>
+      <% @laboratorists.each do |user| %>
+        <option value="<%= user.id %>"><%= user.first_name %> <%= user.last_name %> (<%= user.email %>)</option>
+      <% end %>
+    </select>
+
+    <button type="submit">Crear Muestra</button>
+  </form>
+  <a href="/samples">Volver a la lista de muestras</a>
+</body>
+</html>

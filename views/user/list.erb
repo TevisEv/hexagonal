@@ -33,9 +33,11 @@
           <td><%= user.age %></td>
           <td>
             <a href="/users/<%= user.id %>/edit">Editar</a>
-            <form action="/users/<%= user.id %>/delete" method="post" style="display:inline;">
-              <button type="submit">Eliminar</button>
-            </form>
+            <form action="/users/<%= user.id %>" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Eliminar</button>
+          </form>
+          
           </td>
         </tr>
       <% end %>
