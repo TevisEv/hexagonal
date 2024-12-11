@@ -1,0 +1,23 @@
+<h1>Editar Muestra</h1>
+<form action="/samples/<%= @sample.id %>" method="post">
+  <input type="hidden" name="_method" value="put">
+
+  <p>Nombre de la muestra:</p>
+  <input type="text" name="name" value="<%= @sample.name %>" required>
+
+  <p>Descripción:</p>
+  <textarea name="description" required><%= @sample.description %></textarea>
+
+  <p>Propietario (Cliente):</p>
+  <select name="owner_id">
+    <% @clients.each do |client| %>
+      <option value="<%= client.id %>" <%= 'selected' if client.id == @sample.owner_id %>>
+        <%= client.email %>
+      </option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Actualizar Muestra">
+</form>
+
+<p><a href="/samples">Volver a la lista de muestras</a></p>

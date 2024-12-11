@@ -1,3 +1,4 @@
+<h1>Crear Nueva Muestra</h1>
 <form action="/samples" method="post">
   <p>Nombre de la muestra:</p>
   <input type="text" name="name" required>
@@ -5,7 +6,7 @@
   <p>Descripción:</p>
   <textarea name="description" required></textarea>
 
-  <p>ID del propietario (Cliente):</p>
+  <p>Propietario (Cliente):</p>
   <select name="owner_id">
     <% @clients.each do |client| %>
       <option value="<%= client.id %>"><%= client.email %></option>
@@ -13,7 +14,7 @@
   </select>
 
   <p>Creado por (Laboratorista):</p>
-  <p><%= @current_user ? @current_user[:email] : 'Desconocido' %></p>
+  <p><%= @current_user&.dig(:email) || 'Desconocido' %></p>
 
   <input type="submit" value="Crear Muestra">
 </form>

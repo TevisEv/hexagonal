@@ -1,29 +1,21 @@
-<h1>Edit User</h1>
-
-<form action="/users/<%= @user.id %>" method="post">
+<h1>Editar Muestra</h1>
+<form action="/samples/<%= @sample[:id] %>" method="post">
   <input type="hidden" name="_method" value="put">
 
-  <label for="first_name">First Name:</label>
-  <input type="text" id="first_name" name="first_name" value="<%= @user.first_name %>" required>
+  <p>Nombre de la muestra:</p>
+  <input type="text" name="name" value="<%= @sample[:name] %>" required>
 
-  <label for="last_name">Last Name:</label>
-  <input type="text" id="last_name" name="last_name" value="<%= @user.last_name %>" required>
+  <p>Descripción:</p>
+  <textarea name="description" required><%= @sample[:description] %></textarea>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" value="<%= @user.email %>" required>
-
-  <label for="role">Role:</label>
-  <select id="role" name="role" required>
-    <option value="admin" <%= @user.role == 'admin' ? 'selected' : '' %>>Admin</option>
-    <option value="client" <%= @user.role == 'client' ? 'selected' : '' %>>Client</option>
-    <option value="laboratorist" <%= @user.role == 'laboratorist' ? 'selected' : '' %>>Laboratorist</option>
+  <p>ID del propietario (Cliente):</p>
+  <select name="owner_id">
+    <% @clients.each do |client| %>
+      <option value="<%= client.id %>" <%= "selected" if client.id == @sample[:owner_id] %>><%= client.email %></option>
+    <% end %>
   </select>
 
-  <label for="phone">Phone:</label>
-  <input type="text" id="phone" name="phone" value="<%= @user.phone %>" required>
-
-  <label for="age">Age:</label>
-  <input type="number" id="age" name="age" value="<%= @user.age %>" min="0" required>
-
-  <button type="submit">Update</button>
+  <input type="submit" value="Actualizar Muestra">
 </form>
+
+<p><a href="/samples">Volver a la lista de muestras</a></p>

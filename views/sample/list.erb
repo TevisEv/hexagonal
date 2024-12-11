@@ -1,10 +1,10 @@
+<h1>Lista de Muestras</h1>
 <table>
   <thead>
     <tr>
-      <th>ID</th>
       <th>Nombre</th>
       <th>Descripción</th>
-      <th>Cliente</th>
+      <th>Propietario</th>
       <th>Creado por</th>
       <th>Acciones</th>
     </tr>
@@ -12,18 +12,32 @@
   <tbody>
     <% @samples.each do |sample| %>
       <tr>
-        <td><%= sample.id %></td>
         <td><%= sample.name %></td>
         <td><%= sample.description %></td>
         <td><%= sample.owner_email %></td>
         <td><%= sample.created_by_email %></td>
         <td>
-          <form action="/samples/<%= sample.id %>" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit">Eliminar</button>
-          </form>
+          <% if session[:current_user][:role] == 'laboratorist' || session[:current_user][:role] == 'admin' %>
+            <a href="/samples/<%= sample.id %>/edit">Editar</a>
+            <form action="/samples/<%= sample.id %>" method="post" style="display:inline;">
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<p>
+  <% if session[:current_user][:role] == 'laboratorist' || session[:current_user][:role] == 'admin' %>
+    <a href="/samples/new">Crear nueva muestra</a>
+  <% end %>
+</p>
+
+<p>
+  Usuario actual: <%= session[:current_user]&.dig(:email) || 'No autenticado' %>
+  |
+  <a href="/logout">Cerrar sesión</a>
+</p>

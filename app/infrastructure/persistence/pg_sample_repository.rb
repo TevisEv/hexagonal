@@ -22,7 +22,7 @@ class PgSampleRepository
       created_at: row['created_at']
     )
   end
-  
+
   def all
     result = @connection.exec("SELECT * FROM samples")
     result.map do |row|
@@ -49,6 +49,15 @@ class PgSampleRepository
       owner_id: row['owner_id'].to_i,
       created_by: row['created_by'].to_i,
       created_at: Time.parse(row['created_at'])
+    )
+  end
+
+  def update(id, sample)
+    @connection.exec_params(
+      "UPDATE samples
+       SET name = $1, description = $2, owner_id = $3
+       WHERE id = $4",
+      [sample.name, sample.description, sample.owner_id, id]
     )
   end
 
