@@ -13,6 +13,8 @@ end
 post '/login' do
   user = USER_SERVICE.authenticate(params[:email], params[:password])
   if user
+    session[:current_user] = { id: user.id, email: user.email, role: user.role }
+
     case user.role
     when 'admin'
       redirect '/users'

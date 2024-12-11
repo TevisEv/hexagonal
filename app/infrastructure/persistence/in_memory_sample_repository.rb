@@ -3,26 +3,27 @@ require_relative '../../domain/sample'
 
 class InMemorySampleRepository
   def initialize
-    @samples = {}
+    @samples = []
+    @next_id = 1
   end
 
   def save(sample)
-    @samples[sample.id] = sample
+    sample.id ||= @next_id
+    @next_id += 1
+    @samples << sample
+    sample
   end
 
   def all
-    @samples.values
+    @samples
   end
 
   def find_by_id(id)
-    @samples[id]
-  end
-
-  def update(sample)
-    @samples[sample.id] = sample
+    @samples.find { |sample| sample.id == id }
   end
 
   def delete(id)
-    @samples.delete(id)
+    @samples.reject! { |sample| sample.id == id }
   end
 end
+

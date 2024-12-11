@@ -1,4 +1,3 @@
-
 # app/application/sample_service.rb
 class SampleService
   def initialize(repository)
@@ -6,7 +5,14 @@ class SampleService
   end
 
   def create_sample(name:, description:, owner_id:, created_by:)
-    sample = Sample.new(name: name, description: description, owner_id: owner_id, created_by: created_by)
+    raise "El campo 'created_by' es obligatorio." if created_by.nil?
+
+    sample = Sample.new(
+      name: name,
+      description: description,
+      owner_id: owner_id,
+      created_by: created_by
+    )
     @repository.save(sample)
   end
 

@@ -20,50 +20,24 @@ class PgUserRepository
     result = @connection.exec_params("SELECT * FROM users WHERE email = $1 LIMIT 1", [email])
     return nil if result.ntuples.zero?
 
-    row = result[0]
-    User.new(
-      id: row['id'].to_i,
-      first_name: row['first_name'],
-      last_name: row['last_name'],
-      role: row['role'],
-      email: row['email'],
-      password: row['password'],
-      phone: row['phone'],
-      age: row['age'].to_i
-    )
+    row_to_user(result[0])
   end
 
   def find_by_id(id)
     result = @connection.exec_params("SELECT * FROM users WHERE id = $1 LIMIT 1", [id])
     return nil if result.ntuples.zero?
 
-    row = result[0]
-    User.new(
-      id: row['id'].to_i,
-      first_name: row['first_name'],
-      last_name: row['last_name'],
-      role: row['role'],
-      email: row['email'],
-      password: row['password'],
-      phone: row['phone'],
-      age: row['age'].to_i
-    )
+    row_to_user(result[0])
   end
 
   def all
     result = @connection.exec("SELECT * FROM users")
-    result.map do |row|
-      User.new(
-        id: row['id'].to_i,
-        first_name: row['first_name'],
-        last_name: row['last_name'],
-        role: row['role'],
-        email: row['email'],
-        password: row['password'],
-        phone: row['phone'],
-        age: row['age'].to_i
-      )
-    end
+    result.map { |row| row_to_user(row) }
+  end
+
+  def list_clients
+    result = @connection.exec("SELECT * FROM users WHERE role = 'client'")
+    result.map { |row| row_to_user(row) }
   end
 
   def delete(id)
@@ -88,4 +62,18 @@ class PgUserRepository
     )
   end
 
+  private
+
+  def row_to_user(row)
+    User.new(
+      id: row['id'].to_i,
+      first_name: row['first_name'],
+      last_name: row['last_name'],
+      role: row['role'],
+      email: row['email'],
+      password: row['password'],
+      phone: row['phone'],
+      age: row['age'].to_i
+    )
+  end
 end

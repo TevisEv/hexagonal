@@ -46,6 +46,12 @@ class UserService
   def list_users
     @repository.all
   end
+  
+  def list_clients
+    @repository.all.select { |user| user.role == 'client' }
+  end
+
+  
   def find_user_by_id(id)
     @repository.find_by_id(id)
   end

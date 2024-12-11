@@ -3,58 +3,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema de Gestión</title>
+  <title>Laboratorio Central de Investigación</title>
   <style>
+    /* General styles */
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f4f4f9;
       color: #333;
     }
+
+    /* Header styles */
     header {
-      background-color: #007BFF;
+      background-color: #6cbf6c; /* Light green */
       color: white;
-      padding: 20px 0;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     }
-    h1 {
+
+    header img {
+      height: 50px;
+    }
+
+    nav ul {
+      list-style: none;
       margin: 0;
-      font-size: 2.5em;
+      padding: 0;
+      display: flex;
     }
-    main {
-      margin-top: 50px;
+
+    nav ul li {
+      margin: 0 15px;
     }
-    button {
-      margin: 10px;
-      padding: 15px 30px;
-      font-size: 1em;
+
+    nav ul li a {
+      text-decoration: none;
       color: white;
-      background-color: #007BFF;
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Main content styles */
+    main {
+      text-align: center;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+      color: #555;
+    }
+
+    /* Button styles */
+    button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 15px 40px;
+      font-size: 1.2em;
+      background-color: #6cbf6c; /* Green color */
+      color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       cursor: pointer;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
+
     button:hover {
-      background-color: #0056b3;
+      background-color: #56a756; /* Darker green */
+      transform: translateY(-3px); /* Slight lift effect */
     }
+
+    button:active {
+      background-color: #469646; /* Even darker green */
+      transform: translateY(0); /* Reset lift */
+    }
+
+    /* Footer styles */
     footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
       margin-top: 50px;
+    }
+
+    footer p {
       font-size: 0.9em;
-      color: #666;
+      margin: 0;
+    }
+
+    /* Media query for responsiveness */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+
+      main h1 {
+        font-size: 2em;
+      }
+
+      main p {
+        font-size: 1em;
+      }
+
+      button {
+        font-size: 1em;
+        padding: 10px 30px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <h1>Sistema de Gestión</h1>
-    <p>Bienvenido a la plataforma de gestión de usuarios y muestras.</p>
+    <div>
+      <img src="/mnt/data/Orange minimalist human tech logo design (3).png" alt="GreenLab UNAS Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Tutoriales</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="/login">Ingresar</a></li>
+      </ul>
+    </nav>
   </header>
+
+  <!-- Main content -->
   <main>
-    <button onclick="location.href='/login'">Iniciar Sesión</button>
+    <h1>Laboratorio Central de Investigación</h1>
+    <p>
+      Institución dedicada a la excelencia en el análisis y gestión de muestras.
+      Nuestro laboratorio está comprometido con la calidad y precisión en los
+      servicios que ofrecemos a nuestros clientes, que incluyen tesistas, bachilleres,
+      estudiantes, y el público en general. Nos enorgullecemos de utilizar
+      metodologías avanzadas y mantener altos estándares en todas nuestras
+      operaciones para asegurar resultados confiables y eficientes.
+    </p>
   </main>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2024 Sistema de Gestión. Todos los derechos reservados.</p>
+    <p>&copy; 2024 Laboratorio Central de Investigación. Todos los derechos reservados.</p>
   </footer>
 </body>
 </html>
