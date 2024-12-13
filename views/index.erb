@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +18,22 @@
     header {
       background-color: #6cbf6c; /* Light green */
       color: white;
-      padding: 10px 20px;
+      padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    header:hover {
+      background-color: #56a756; /* Slightly darker green on hover */
     }
 
     header img {
-      height: 50px;
+      height: 50px; /* Tamaño ajustado */
+      width: auto;
+      margin-right: 20px;
     }
 
     nav ul {
@@ -34,67 +41,77 @@
       margin: 0;
       padding: 0;
       display: flex;
+      justify-content: flex-end;
     }
 
     nav ul li {
-      margin: 0 15px;
+      margin: 0 20px;
     }
 
     nav ul li a {
       text-decoration: none;
       color: white;
       font-weight: bold;
-      font-size: 1em;
+      font-size: 1.2em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
     }
 
     nav ul li a:hover {
-      text-decoration: underline;
+      color: #f4f4f9;
     }
 
     /* Main content styles */
     main {
       text-align: center;
-      margin: 50px auto;
+      margin: 60px auto;
       padding: 20px;
+      max-width: 1000px;
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 3.2em;
       font-weight: bold;
       margin-bottom: 20px;
+      color: #2f5f2f; /* Dark green */
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     p {
-      font-size: 1.2em;
+      font-size: 1.4em;
       line-height: 1.8;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto 30px auto;
       color: #555;
+      padding: 0 15px;
     }
 
     /* Button styles */
     button {
       display: inline-block;
       margin-top: 20px;
-      padding: 15px 40px;
-      font-size: 1.2em;
-      background-color: #6cbf6c; /* Green color */
+      padding: 15px 50px;
+      font-size: 1.3em;
+      background-color: #6cbf6c;
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 25px;
       cursor: pointer;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     button:hover {
-      background-color: #56a756; /* Darker green */
-      transform: translateY(-3px); /* Slight lift effect */
+      background-color: #56a756;
+      transform: translateY(-5px); /* Lift effect */
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
     }
 
     button:active {
-      background-color: #469646; /* Even darker green */
+      background-color: #469646;
       transform: translateY(0); /* Reset lift */
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     }
 
     /* Footer styles */
@@ -102,13 +119,24 @@
       background-color: #333;
       color: white;
       text-align: center;
-      padding: 10px 0;
-      margin-top: 50px;
+      padding: 15px 0;
+      margin-top: 60px;
     }
 
     footer p {
-      font-size: 0.9em;
+      font-size: 1em;
       margin: 0;
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: #6cbf6c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     /* Media query for responsiveness */
@@ -116,11 +144,13 @@
       header {
         flex-direction: column;
         align-items: flex-start;
+        padding: 20px;
       }
 
       nav ul {
         flex-direction: column;
         align-items: flex-start;
+        margin-top: 20px;
       }
 
       nav ul li {
@@ -128,16 +158,16 @@
       }
 
       main h1 {
-        font-size: 2em;
+        font-size: 2.5em;
       }
 
       main p {
-        font-size: 1em;
+        font-size: 1.1em;
       }
 
       button {
-        font-size: 1em;
-        padding: 10px 30px;
+        font-size: 1.1em;
+        padding: 12px 35px;
       }
     }
   </style>
@@ -146,13 +176,13 @@
   <!-- Header -->
   <header>
     <div>
-      <img src="../recursos/img/GREENLAB.png" alt="GreenLab UNAS Logo">
+      <img src="/recursos/GREENLAB.png" alt="GreenLab UNAS Logo">
     </div>
     <nav>
       <ul>
         <li><a href="#">Inicio</a></li>
         <li><a href="#">Tutoriales</a></li>
-        <li><a href="#">Servicios</a></li>
+        <li><a href="https://www.facebook.com/photo?fbid=2756760047891915&set=gm.3941245849250801" target="_blank">Servicios</a></li>
         <li><a href="/login">Ingresar</a></li>
       </ul>
     </nav>
@@ -169,11 +199,13 @@
       metodologías avanzadas y mantener altos estándares en todas nuestras
       operaciones para asegurar resultados confiables y eficientes.
     </p>
+    <button>Ver más</button>
   </main>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2024 Laboratorio Central de Investigación. Todos los derechos reservados.</p>
+    <p>Desarrollado por <a href="https://www.unas.edu.pe" target="_blank">UNAS</a></p>
   </footer>
 </body>
 </html>

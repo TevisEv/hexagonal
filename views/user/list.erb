@@ -1,57 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Usuarios</title>
+  <title>Usuarios - Administración</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 50px auto;
+      background-color: #ecf0f1;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-in-out;
+      overflow: hidden;
+      color: #2c3e50;
+      
+    h1 {
+      font-size: 2.8em;
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #16a085, #1abc9c);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      animation: slideIn 1s ease-out;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #7f8c8d;
+      vertical-align: middle;
+      font-size: 1.1em;
+    }
+
+    th {
+      background-color: #27ae60;
+      color: #ecf0f1;
+      font-size: 1.1em;
+      text-transform: uppercase;
+    }
+
+    td {
+      background-color: #f5f5f5;
+      color: #2c3e50;
+    }
+
+    td a {
+      color: #2c3e50;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    td a:hover {
+      color: #27ae60;
+      text-decoration: underline;
+    }
+
+    /* Edit Button Styles (with border) */
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .actions a,
+    .actions form button {
+      background-color: #3498db;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-right: 10px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .actions a:hover,
+    .actions form button:hover {
+      background-color: #2980b9;
+      transform: translateY(-3px);
+    }
+
+    .actions a:active,
+    .actions form button:active {
+      background-color: #2980b9;
+      transform: translateY(0);
+    }
+
+    /* Buttons Styles */
+    button {
+      background-color: #e74c3c; /* Rojo clásico */
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-size: 1em;
+    }
+
+    button:hover {
+      background-color: #c0392b;
+      transform: translateY(-3px);
+    }
+
+    button:active {
+      background-color: #e74c3c;
+      transform: translateY(0);
+    }
+
+    /* Action Buttons */
+    .new-user-btn,
+    .log-out-btn {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      background-color: #27ae60;
+      padding: 12px 30px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      transition: all 0.3s ease;
+      margin: 15px 0;
+      width: auto;
+    }
+
+    .new-user-btn:hover,
+    .log-out-btn:hover {
+      background-color: #2ecc71;
+      transform: translateY(-3px);
+    }
+
+    .new-user-btn:active,
+    .log-out-btn:active {
+      background-color: #2ecc71;
+      transform: translateY(0);
+    }
+
+    /* Hover Icon Animation */
+    .icon {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      transition: transform 0.3s ease;
+    }
+
+    .icon:hover {
+      transform: scale(1.2);
+    }
+
+    /* Eliminar Button with Trash Icon */
+    .delete-btn {
+      background-color: #e74c3c; /* Rojo clásico */
+      color: white;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .delete-btn i {
+      margin-right: 8px;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+      transform: translateY(-3px);
+    }
+
+    .delete-btn:active {
+      background-color: #e74c3c;
+      transform: translateY(0);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      table {
+        font-size: 0.9em;
+      }
+
+      th, td {
+        padding: 10px;
+      }
+
+      .container {
+        width: 95%;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2.2em;
+      }
+
+      .new-user-btn,
+      .log-out-btn {
+        font-size: 1em;
+        padding: 10px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Dashboard del Administrador</h1>
-  <nav>
-    <ul>
-      <li><a href="/users">Lista de Usuarios</a></li>
-      <li><a href="/samples">Lista de Muestras</a></li>
-      <li><a href="/logout">Cerrar sesión</a></li>
-    </ul>
-  </nav>
 
-  <h1>Lista de Usuarios</h1>
-  <a href="/users/new">Crear Usuario</a>
-  <table border="1">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Rol</th>
-        <th>Email</th>
-        <th>Teléfono</th>
-        <th>Edad</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
+  <div class="container">
+    <h1>Lista de Usuarios</h1>
+
+    <!-- Botón de Crear Nuevo Usuario -->
+    <a href="/users/new" class="new-user-btn">
+      <i class="fas fa-user-plus icon"></i> Crear Nuevo Usuario
+    </a>
+
+    <!-- Tabla de Usuarios -->
+    <table>
+      <thead>
         <tr>
-          <td><%= user.id %></td>
-          <td><%= user.first_name %></td>
-          <td><%= user.last_name %></td>
-          <td><%= user.role %></td>
-          <td><%= user.email %></td>
-          <td><%= user.phone %></td>
-          <td><%= user.age %></td>
-          <td>
-            <a href="/users/<%= user.id %>/edit">Editar</a>
-            <form action="/users/<%= user.id %>" method="post" style="display:inline;">
-              <input type="hidden" name="_method" value="delete">
-              <button type="submit">Eliminar</button>
-            </form>
-          </td>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Rol</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Edad</th>
+          <th>Acciones</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.role %></td>
+            <td><%= user.email %></td>
+            <td><%= user.phone %></td>
+            <td><%= user.age %></td>
+            <td class="actions">
+              <a href="/users/<%= user.id %>/edit" style="background-color: #f39c12; color: #fff;">
+                <i class="fas fa-edit icon"></i> Editar
+              </a>
+              <form action="/users/<%= user.id %>" method="post" style="display:inline;">
+                <input type="hidden" name="_method" value="delete">
+                <button class="delete-btn" type="submit">
+                  <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+              </form>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <p><a href="/">Volver al inicio</a></p>
+    <!-- Botón de Cerrar Sesión -->
+    <a href="/logout" class="log-out-btn">
+      <i class="fas fa-sign-out-alt icon"></i> Cerrar Sesión
+    </a>
+  </div>
+
 </body>
 </html>

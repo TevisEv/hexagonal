@@ -2,31 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crear Usuario</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #2980b9, #6dd5fa, #ffffff);
+    }
+
+    .container {
+      background: #f4f6f9;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #2ecc71;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      text-align: left;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    input, select {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #bdc3c7;
+      margin-bottom: 15px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 1.1em;
+      background: #27ae60;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: #2ecc71;
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      background: #27ae60;
+      transform: translateY(0);
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #3498db;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #2980b9;
+    }
+  </style>
 </head>
 <body>
-  <h1>Crear Usuario</h1>
-  <form action="/users" method="post">
-    <label>Nombre:</label><br>
-    <input type="text" name="first_name" required><br>
-    <label>Apellido:</label><br>
-    <input type="text" name="last_name" required><br>
-    <label>Rol:</label><br>
-    <select name="role">
-      <option value="admin">Admin</option>
-      <option value="client">Cliente</option>
-      <option value="laboratorist">Laboratorista</option>
-    </select><br>
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br>
-    <label>Contraseña:</label><br>
-    <input type="password" name="password" required><br>
-    <label>Teléfono:</label><br>
-    <input type="text" name="phone" required><br>
-    <label>Edad:</label><br>
-    <input type="number" name="age" required><br><br>
-    <button type="submit">Crear</button>
-  </form>
-  <a href="/users">Volver</a>
+  <div class="container">
+    <h1>Crear Usuario</h1>
+    <form action="/users" method="post">
+      <label for="first_name">Nombre:</label>
+      <input type="text" id="first_name" name="first_name" placeholder="Ingresa el nombre" required>
+
+      <label for="last_name">Apellido:</label>
+      <input type="text" id="last_name" name="last_name" placeholder="Ingresa el apellido" required>
+
+      <label for="role">Rol:</label>
+      <select id="role" name="role" required>
+        <option value="admin">Admin</option>
+        <option value="client">Cliente</option>
+        <option value="laboratorist">Laboratorista</option>
+      </select>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="correo@example.com" required>
+
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" placeholder="Ingresa la contraseña" required>
+
+      <label for="phone">Teléfono:</label>
+      <input type="text" id="phone" name="phone" placeholder="Ingresa el número de teléfono" required>
+
+      <label for="age">Edad:</label>
+      <input type="number" id="age" name="age" placeholder="Ingresa la edad" required>
+
+      <button type="submit">Crear Usuario</button>
+    </form>
+
+    <a href="/users">&larr; Volver a la lista de usuarios</a>
+  </div>
 </body>
 </html>

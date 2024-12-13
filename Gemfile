@@ -10,6 +10,10 @@ gem "rails", "~> 7.0.0"
 # PostgreSQL: gema para manejar la base de datos
 gem "pg"
 
+
+#gema para twilio
+gem 'twilio-ruby', '~> 5.0'
+
 # Sinatra: framework web ligero
 gem "sinatra"
 
